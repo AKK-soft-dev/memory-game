@@ -1,7 +1,7 @@
 import { useDeferredValue } from "react";
 import ProgressBar from "./ProgressBar";
 
-export default function Modal({ show, progressBarRef }) {
+export default function Modal({ show, children }) {
   const showModal = useDeferredValue(show);
 
   return (
@@ -27,7 +27,7 @@ export default function Modal({ show, progressBarRef }) {
             </h1>
           </div>
           <div className="modal-body">
-            <ProgressBar min={0} max={100} ref={progressBarRef} />
+            {children}
           </div>
         </div>
       </div>
