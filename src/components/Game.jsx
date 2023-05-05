@@ -92,7 +92,9 @@ export default function Game() {
 
   return (
     <>
-      <Modal show={!resourcesLoaded}><ProgressBar ref={progressBarRef} min={0} max={100} /></ Modal>
+      <Modal show={!resourcesLoaded}>
+        <ProgressBar ref={progressBarRef} min={0} max={100} />
+      </Modal>
       <div className="row mx-0 row-gap-1 justify-content-between">
         {gifNames.map((gifName, index) => (
           <Card
