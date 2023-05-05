@@ -3,8 +3,8 @@ This app isn't that amazing. Just practicing with Bootstrap, trying to optimize 
 
 
 # Tech Stack
-- React
-- Bootstrap
+- [React](https://react.dev "React Docs Site")
+- [Bootstrap](https://getbootstrap.com/ "Learn Bootstrap")
 
 
 # Live demo
