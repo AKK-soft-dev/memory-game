@@ -1,5 +1,4 @@
 import { useDeferredValue } from "react";
-import ProgressBar from "./ProgressBar";
 
 export default function Modal({ show, children }) {
   const showModal = useDeferredValue(show);
