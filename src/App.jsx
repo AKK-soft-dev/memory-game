@@ -9,10 +9,10 @@ function App() {
       </h1>
       <Game />
       <small
-        className="copyright text-secondary"
+        className="copyright text-secondary user-select-none"
         style={{ "--bs-text-opacity": 0.2 }}
       >
-        @2023 Aung Ko Ko
+        &copy;2023 Aung Ko Ko
       </small>
     </div>
   );

@@ -40,8 +40,7 @@ export default function Game() {
       const progress = (loadedResourcesCount / totalCardsCount) * 100;
       // console.log(progress);
       progressBarRef.current.style.width = `${progress}%`;
-      progressBarRef.current["aria-valuenow"] = progress;
-      console.log(progressBarRef.current["aria-valuenow"]);
+      // console.log(progressBarRef.current["aria-valuenow"]);
 
       if (loadedResourcesCount === totalCardsCount) {
         setResourcesLoaded(true);
@@ -63,8 +62,8 @@ export default function Game() {
     }
   }, [flippedCards, gifNames]);
 
-  const handleClick = (i) => {
-    // Only allow to flip card when we have enough chances, and we have't flipped any card yet or the last two card are same, or the number of flipped cards is odd
+  const handleClick = (index) => {
+    // Allow to flip card only if we have enough chances, and if we have't flipped any card yet or if the last two card are same, or if the number of flipped cards is odd
     if (
       chances > 0 &&
       (flippedCards.length === 0 ||
@@ -72,7 +71,7 @@ export default function Game() {
         flippedCards.length % 2 !== 0)
     ) {
       setChances((chances) => chances - 1);
-      setFlippedCards((flippedCards) => [...flippedCards, i]);
+      setFlippedCards((flippedCards) => flippedCards.concat(index));
     }
   };
 
