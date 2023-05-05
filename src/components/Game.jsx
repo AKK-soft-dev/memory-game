@@ -3,6 +3,7 @@ import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Card from "./Card";
 import { generateRandomGifs, gifSources } from "../api/data";
 import Modal from "./Modal";
+import ProgressBar from "./ProgressBar";
 
 // This value must be even if we check even number of cards is the same
 // Otherwise, the game will last with inappropriate flipped cards
@@ -91,7 +92,7 @@ export default function Game() {
 
   return (
     <>
-      <Modal show={!resourcesLoaded} progressBarRef={progressBarRef} />
+      <Modal show={!resourcesLoaded}><ProgressBar ref={progressBarRef} min={0} max={100} /></ Modal>
       <div className="row mx-0 row-gap-1 justify-content-between">
         {gifNames.map((gifName, index) => (
           <Card
