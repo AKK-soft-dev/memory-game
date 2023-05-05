@@ -49,3 +49,9 @@ img {
 .back-side {
   transform: rotateY(180deg);
 }
+
+.copyright {
+  position: fixed;
+  top: 0;
+  left: 0;
+}

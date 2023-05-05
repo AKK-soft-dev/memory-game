@@ -1,17 +1,17 @@
-export default function ProgressBar({ current, min, max }) {
+import React from "react";
+
+function ProgressBar({ current, min, max }, ref) {
   return (
     <div
       className="progress"
       role="progressbar"
       aria-label="Showing loaded resources progress"
-      aria-valuenow={current}
       aria-valuemin={min}
       aria-valuemax={max}
     >
-      <div
-        className="progress-bar progress-bar-striped"
-        style={{ width: `${current}%` }}
-      ></div>
+      <div className="progress-bar progress-bar-striped" ref={ref}></div>
     </div>
   );
 }
+
+export default React.forwardRef(ProgressBar);

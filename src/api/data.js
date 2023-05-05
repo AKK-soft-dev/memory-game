@@ -16,6 +16,7 @@ export const gifSources = {
 
 export const gifNames = Object.getOwnPropertyNames(gifSources);
 
+// Shuffling array
 export const generateRandomGifs = () => {
   const randomGifs = [...gifNames, ...gifNames];
   for (let i = randomGifs.length - 1; i > 0; i--) {

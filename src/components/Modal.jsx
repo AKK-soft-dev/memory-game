@@ -1,12 +1,15 @@
+import { useDeferredValue } from "react";
 import ProgressBar from "./ProgressBar";
 
-export default function Modal({ show, progress }) {
+export default function Modal({ show, progressBarRef }) {
+  const showModal = useDeferredValue(show);
+
   return (
     <div
       className={`modal fade ${show ? "show" : ""}`}
       id="staticBackdrop"
       style={{
-        display: show ? "block" : "none",
+        display: showModal ? "block" : "none",
         top: "50%",
         transform: "translateY(-30%)",
       }}
@@ -24,7 +27,7 @@ export default function Modal({ show, progress }) {
             </h1>
           </div>
           <div className="modal-body">
-            <ProgressBar min={0} max={100} current={progress} />
+            <ProgressBar min={0} max={100} ref={progressBarRef} />
           </div>
         </div>
       </div>
