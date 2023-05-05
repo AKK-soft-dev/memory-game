@@ -6,9 +6,12 @@ import Modal from "./Modal";
 
 // This value must be even if we check even number of cards is the same
 // Otherwise, the game will last with inappropriate flipped cards
-const defaultTotalChances = 32;
+const defaultTotalChances = 30;
 
 // Check if the last two flipped cards are the same
+/*
+  The reason why I put this function definition outside of component function is because I want to use this function inside Effect and outside of it. If I defined in component, I will need to put it in dependencies list. So everytime the component re-render, the function definition will be different for every renders and causing unintended re-synchronization. I know that is not necessary in small application like this app :3
+*/
 const calculateSameCards = (gifNames, flippedCards) => {
   return (
     gifNames[flippedCards[flippedCards.length - 2]] ===
@@ -22,8 +25,12 @@ export default function Game() {
   const [gifNames, setGifNames] = useState(generateRandomGifs());
   const [resourcesLoaded, setResourcesLoaded] = useState(0);
 
-  // Here if we used state, it will lead to unnecessary re-renders
-  // So I use ref instead and manipulate the DOM node imperatively
+  {
+    /*
+    Here if I used state, it will lead to unnecessary re-renders. For example, if I have 12 cards, the resources will be 12. So, that will lead to 12 renders.
+    So I use ref instead and manipulate the DOM node imperatively
+  */
+  }
   const loadedResources = useRef(0);
   const progressBarRef = useRef(null);
 
