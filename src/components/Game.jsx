@@ -75,7 +75,8 @@ export default function Game() {
       chances > 0 &&
       (flippedCards.length === 0 ||
         calculateSameCards(gifNames, flippedCards) ||
-        flippedCards.length % 2 !== 0)
+        flippedCards.length % 2 !== 0) &&
+      !flippedCards.includes(index)
     ) {
       setChances((chances) => chances - 1);
       setFlippedCards((flippedCards) => flippedCards.concat(index));

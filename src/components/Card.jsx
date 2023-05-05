@@ -7,6 +7,7 @@ export default function Card({ gifSrc, flip = false, onClick, onLoad }) {
         className={`flip-inner shadow border border-primary ${
           flip ? "flip" : ""
         }`}
+        style={{ cursor: flip ? "not-allowed" : "pointer" }}
       >
         <div className="front-side"></div>
         <div className="back-side">
