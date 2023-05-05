@@ -1,6 +1,6 @@
 import React from "react";
 
-function ProgressBar({ current, min, max }, ref) {
+function ProgressBar({ min, max }, ref) {
   return (
     <div
       className="progress"
