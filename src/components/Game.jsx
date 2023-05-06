@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Card from "./Card";
 import { generateRandomGifs, gifSources } from "../api/data";
@@ -9,22 +9,19 @@ import ProgressBar from "./ProgressBar";
 // Otherwise, the game will last with inappropriate flipped cards
 const defaultTotalChances = 30;
 
-// Check if the last two flipped cards are the same
-/*
-  The reason why I put this function definition outside of component function is because I want to use this function inside Effect and outside of it. If I defined in component, I will need to put it in dependencies list. So everytime the component re-render, the function definition will be different for every renders and causing unintended re-synchronization. I know that is not necessary in small application like this app :3
-*/
-const calculateSameCards = (gifNames, flippedCards) => {
-  return (
-    gifNames[flippedCards[flippedCards.length - 2]] ===
-    gifNames[flippedCards[flippedCards.length - 1]]
-  );
-};
-
 export default function Game() {
   const [chances, setChances] = useState(defaultTotalChances);
   const [flippedCards, setFlippedCards] = useState([]);
   const [gifNames, setGifNames] = useState(generateRandomGifs());
-  const [resourcesLoaded, setResourcesLoaded] = useState(0);
+  const [resourcesLoaded, setResourcesLoaded] = useState(false);
+
+  // Check if the last two flipped cards are the same
+  const calculateSameCards = () => {
+    return (
+      gifNames[flippedCards[flippedCards.length - 2]] ===
+      gifNames[flippedCards[flippedCards.length - 1]]
+    );
+  };
 
   {
     /*
@@ -59,23 +56,21 @@ export default function Game() {
   useEffect(() => {
     // If the last two flipped cards are not the same, remove them from flippedCards array
     // i.e unflip them
-    if (
-      flippedCards.length % 2 === 0 &&
-      !calculateSameCards(gifNames, flippedCards)
-    ) {
+
+    if (flippedCards.length % 2 === 0 && !calculateSameCards()) {
       // console.log(calculateSameCards(), flippedCards);
       setTimeout(() => {
         setFlippedCards((flippedCards) => flippedCards.slice(0, -2));
       }, 1000);
     }
-  }, [flippedCards, gifNames]);
+  }, [flippedCards, calculateSameCards]);
 
   const handleClick = (index) => {
     // Allow to flip card only if we have enough chances, and if we have't flipped any card yet or if the last two card are same, or if the number of flipped cards is odd
     if (
       chances > 0 &&
       (flippedCards.length === 0 ||
-        calculateSameCards(gifNames, flippedCards) ||
+        calculateSameCards() ||
         flippedCards.length % 2 !== 0) &&
       !flippedCards.includes(index)
     ) {
