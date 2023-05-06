@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Card from "./Card";
 import { generateRandomGifs, gifSources } from "../api/data";
@@ -82,7 +82,12 @@ export default function Game() {
   const resetGame = () => {
     setFlippedCards([]);
     setChances(defaultTotalChances);
-    setGifNames(generateRandomGifs());
+    // setGifNames(generateRandomGifs());
+
+    // Update the state after unflip cards
+    setTimeout(() => {
+      setGifNames(generateRandomGifs());
+    }, 500);
   };
 
   return (
