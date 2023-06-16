@@ -1,8 +1,4 @@
-import { useDeferredValue } from "react";
-
 export default function Modal({ show, children }) {
-  const showModal = useDeferredValue(show);
-
   return (
     <div
       className={`modal fade ${show ? "show" : ""}`}
