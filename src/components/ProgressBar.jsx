@@ -1,5 +1,6 @@
 import React from "react";
 
+// Poor accessibility
 function ProgressBar({ min, max }, ref) {
   return (
     <div
